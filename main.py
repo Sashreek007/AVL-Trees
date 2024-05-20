@@ -5,22 +5,6 @@ class AvlNode:
         self.left= None
         self.right= None
         self.height=1
-    
-
-def insert(rootnode,value):
-    if rootnode.data is None:
-        rootnode.data = value
-    elif value<=rootnode.data:
-        if rootnode.left is None:
-            rootnode.left = AvlNode(value)
-        else:
-            insert(rootnode.left,value)
-    elif value >rootnode.data:
-        if rootnode.right is None:
-            rootnode.right = AvlNode(value)
-        else:
-            insert(rootnode.right,value)
-    return "successful"
 
 def LevelOrderTraversal(rootnode):
     if not rootnode:
@@ -37,7 +21,7 @@ def LevelOrderTraversal(rootnode):
                 custom_queue.enqueue(root.value.right)
 
 def searching(rootnode,target):
-    if rootnode is None:
+    if rootnode.data is None:
         return "Doesn't exist"
     if rootnode.data == target:
         return "Found"
@@ -48,16 +32,16 @@ def searching(rootnode,target):
             return "Not found" 
     elif rootnode.data<target:
         if rootnode.right is not None:
-            return insert(rootnode.right,target)
+            return searching(rootnode.right,target)
         else:
             return "Not found"
 
     
 avl = AvlNode(None)
-print(insert(avl,70))
-insert(avl,60)
-insert(avl,80)
 LevelOrderTraversal(avl)
 print(searching(avl,10))
+
+
+
 
 
