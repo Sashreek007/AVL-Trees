@@ -70,6 +70,10 @@ def insert(rootnode,newnode):
     else:
         rootnode.right=insert(rootnode.right,newnode)
     
+
+    if rootnode is None:
+        return rootnode
+    
     rootnode.height=1+ max(getHeight(rootnode.left),getHeight(rootnode.right))
     balance= getBalance(rootnode)
     if balance >1 and newnode< rootnode.left.data:
@@ -121,7 +125,7 @@ def delete_node(rootnode,nodevalue):
         if balance < -1 and nodevalue < rootnode.right.data:
             rootnode.right= rightRotation(rootnode.right)
             return leftRotation(rootnode)
-        return rootnode
+    return rootnode
         
 avl = AvlNode(50)
 avl=insert(avl,40)
@@ -129,7 +133,8 @@ avl=insert(avl,65)
 avl=insert(avl,60)
 avl=insert(avl,70)
 avl=insert(avl,75)
- 
+avl= delete_node(avl,50)
+
 levelOrderTraversal(avl)
 
 
